@@ -1,4 +1,4 @@
-global class Batch01AccountChiffreAffaire implements Database.Batchable<sObject>{
+global class UpdateAllAccounts implements Database.Batchable<sObject>{
     
    global Database.QueryLocator start(Database.BatchableContext info){ 
        //Requeter seulement les comptes qui ont au moins une commande avec le Status 'Ordered'
@@ -7,8 +7,9 @@ global class Batch01AccountChiffreAffaire implements Database.Batchable<sObject>
    }
     
    global void execute(Database.BatchableContext info, List<Account> scope){
-       Set<Id> setAccountIds = (new Map<Id,SObject>(scope)).keySet();
-       AP01Account.updateChiffreAffaire(setAccountIds);
+       Set<Id> AccountSetIds = (new Map<Id,SObject>(scope)).keySet();
+       //AP01Account.updateChiffreAffaire(AccountSetIds);
+       //on cherche a faire quoi ici ?
    }    
     
    global void finish(Database.BatchableContext info){     
