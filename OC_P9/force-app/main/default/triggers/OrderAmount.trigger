@@ -7,8 +7,12 @@ trigger OrderAmount on Order (before update) {
 	);
 	List<Order> od = new List<Order>();
 	for(Order a : Trigger.New){//il y avais crocher[0] seulement le premier etai selectioner
+		if(a.ShipmentCost__c != 0 && a.ShipmentCost__c!= null){
+			a.NetAmount__c = a.TotalAmount - a.ShipmentCost__c;
+		}
+		//if valeur negative ? si frai de livraison sur au prix ?
 
-		a.NetAmount__c = a.TotalAmount - a.ShipmentCost__c;// dous vienne c varible ?
+		// dous vienne c varible ?
 		//ajouter les valeur mais a quoi elle coresponde ?
 		od.add(a);
 		//a.ShipmentCost__c -> frai de livraison
