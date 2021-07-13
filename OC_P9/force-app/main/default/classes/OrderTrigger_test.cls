@@ -1,55 +1,41 @@
 @istest
 public with sharing class OrderTrigger_test {
     @istest
-    static public void testOrderNetAmount() {
-        //List<Order> orders= new List<Order>();
-       // List<Order> requestOrders= new List<Order>();
+    static public void testOrderNetAmount() {//verifi le fontionement du calcul du net amont avec le triger
+
        
-        Order ord = DataFactory.generateOrderItem('Ao', 'Po','Fo', 10 , 50,'Ordered',10);
+        Order ord = DataFactory.generateOrderItem('Ao', 'Po','Fo', 10 , 50,'Ordered',10);//crréation d un order
        
-       
-        //Order od =[SELECT Id,ShipmentCost__c FROM Order WHERE OrderId=:orderit.OrderId Limit 1];
        Test.startTest();
-            //for (Integer i=0 ;i<10;i++)
+       //mise a jour de l order pour activer le trigger
             ord.ShipmentCost__c=100;
-            System.debug('ord:' + ord);
-            System.debug('My Debug Message'+ord.TotalAmount);
             update ord ;
 
         Test.stopTest();
-        
-        /*System.debug('ordna:' + ord.NetAmount__c);
-             
-             System.debug('ordtotalamm:' + [SELECT Id,TotalAmount,ShipmentCost__c FROM Order WHERE Id=:ord.Id].TotalAmount);
-          */  
-        System.AssertEquals(/*requestOrders*/[SELECT Id,TotalAmount,ShipmentCost__c,NetAmount__c FROM Order WHERE Id=:ord.Id].NetAmount__c,400/* metre la vrai valeur apre avoir conaisence de la variable dans le calcul*/ );
+        //verification de la valeur du net amount apres mise a jour
+        System.AssertEquals([SELECT Id,TotalAmount,ShipmentCost__c,NetAmount__c FROM Order WHERE Id=:ord.Id].NetAmount__c,400);
     }
-    //////////////////
+
     @istest
-    static void testTriggerUpdateAccountCA() {
-        //https://trailhead.salesforce.com/fr/content/learn/modules/apex_testing/apex_testing_triggers
-        //OrderItem ordItem = DataFactory.generateOrderItem('N1','P1','F1',10 ,100);
+    static void testTriggerUpdateAccountCA() {//test la mise à jour du chiffre d'affaire
+
         List<Order> ords = new List<Order>();
-        for (Integer i=0;i<6;i++) {
+        for (Integer i=0;i<6;i++) {//création de 6 order
             ords.add(DataFactory.generateOrderItem('A', 'Po'+i,'Fo'+i, 10 , 50,'Ordered',10)); 
         }
         Test.startTest();
         for (Integer i=0;i<6;i++) {
             ords[i].ShipmentCost__c=100;
-            //on doit les metre a jour en cas de test sinon cel ace ferai a l'ajout d un order item
+            //mise à jour de l'order pour activer le trigger sinon elle se fait à l'ajout d'un order item
         }
         update ords;
         Test.stopTest();
-        /*System.Debug('COUCOU');
-        System.Debug(ord.Account.Chiffre_d_affaire__c);
-        System.Debug([SELECT Chiffre_d_affaire__c FROM Account WHERE  Id=:ord.AccountId]);   */
-        //System.Debug([SELECT Id,Chiffre_d_affaire__c FROM Account WHERE Name = 'A']);
+        //vérification de la valeur du chiffre d'affaire
         System.AssertEquals([SELECT Chiffre_d_affaire__c FROM Account WHERE Name = 'A'].Chiffre_d_affaire__c,2400);
     }
     @istest
-    static void testTriggerMultipleUpdateAccountCA() {
-        //https://trailhead.salesforce.com/fr/content/learn/modules/apex_testing/apex_testing_triggers
-        //OrderItem ordItem = DataFactory.generateOrderItem('N1','P1','F1',10 ,100);
+    static void testMultipleOrder() {//création de 101 order pour voir si cela fonctionne contrairement à ce qui était indiqué
+        
         List<Order> orders= new List<Order>();
         List<Order> requestOrders= new List<Order>();
         Test.startTest();
@@ -58,8 +44,8 @@ public with sharing class OrderTrigger_test {
 
         Test.stopTest();  
         requestOrders=[SELECT Id FROM Order];  
-        System.AssertEquals(orders.size(),101);
-        System.AssertEquals(requestOrders.size(),101);
+        System.AssertEquals(orders.size(),101);//vérification que les order ont bien été créés
+        System.AssertEquals(requestOrders.size(),101);//vérification que les order ont bien été créés dans la base de données
     }
 }
 
