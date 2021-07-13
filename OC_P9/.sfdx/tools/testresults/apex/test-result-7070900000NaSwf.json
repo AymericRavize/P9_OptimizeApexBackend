@@ -1,0 +1,50 @@
+{
+  "summary": {
+    "outcome": "Failed",
+    "testsRan": 1,
+    "passing": 0,
+    "failing": 1,
+    "skipped": 0,
+    "passRate": "0%",
+    "failRate": "100%",
+    "skipRate": "0%",
+    "testStartTime": "Fri Jul 09 2021 17:22:11",
+    "testExecutionTimeInMs": 290,
+    "testTotalTimeInMs": 290,
+    "commandTimeInMs": 1946,
+    "hostname": "https://openclassroom9-dev-ed.my.salesforce.com",
+    "orgId": "00D09000007FKQOEA4",
+    "username": "aymericravizep7@openclassroom.com",
+    "testRunId": "7070900000NaSwf",
+    "userId": "00509000003XTOGAA4"
+  },
+  "tests": [
+    {
+      "id": "07M09000000dwNOEAY",
+      "queueItemId": "70909000000Y0aXAAS",
+      "stackTrace": "Class.OrderAmount_test.testTriggerUpdateAccountCA: line 34, column 1",
+      "message": "System.NullPointerException: Attempt to de-reference a null object",
+      "asyncApexJobId": "7070900000NaSwfAAF",
+      "methodName": "testTriggerUpdateAccountCA",
+      "outcome": "Fail",
+      "apexLogId": "07L09000003pcLiEAI",
+      "apexClass": {
+        "id": "01p0900000JX8KSAA1",
+        "name": "OrderAmount_test",
+        "namespacePrefix": null,
+        "fullName": "OrderAmount_test"
+      },
+      "runTime": 290,
+      "testTimestamp": "2021-07-09T15:22:11.000+0000",
+      "fullName": "OrderAmount_test.testTriggerUpdateAccountCA",
+      "diagnostic": {
+        "exceptionMessage": "System.NullPointerException: Attempt to de-reference a null object",
+        "exceptionStackTrace": "Class.OrderAmount_test.testTriggerUpdateAccountCA: line 34, column 1",
+        "className": "OrderAmount_test",
+        "compileProblem": "",
+        "lineNumber": 34,
+        "columnNumber": 1
+      }
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "summary": {
+    "outcome": "Skipped",
+    "testsRan": 1,
+    "passing": 0,
+    "failing": 0,
+    "skipped": 1,
+    "passRate": "0%",
+    "failRate": "0%",
+    "skipRate": "100%",
+    "testStartTime": "Fri Jul 09 2021 15:50:07",
+    "testExecutionTimeInMs": 0,
+    "testTotalTimeInMs": 0,
+    "commandTimeInMs": 153,
+    "hostname": "https://openclassroom9-dev-ed.my.salesforce.com",
+    "orgId": "00D09000007FKQOEA4",
+    "username": "aymericravizep7@openclassroom.com",
+    "testRunId": "7070900000NaQy6",
+    "userId": "00509000003XTOGAA4"
+  },
+  "tests": [
+    {
+      "id": "07M09000000dwHmEAI",
+      "queueItemId": "70909000000Y0YVAA0",
+      "stackTrace": null,
+      "message": "Method testTriggerUpdateAccountCA does not exist in the the apex class with Id :01p0900000JVt7e",
+      "asyncApexJobId": "7070900000NaQy6AAF",
+      "methodName": "testTriggerUpdateAccountCA",
+      "outcome": "Skip",
+      "apexLogId": null,
+      "apexClass": {
+        "id": "01p0900000JVt7eAAD",
+        "name": "UpdateAccounts_test",
+        "namespacePrefix": null,
+        "fullName": "UpdateAccounts_test"
+      },
+      "runTime": 0,
+      "testTimestamp": "2021-07-09T13:50:08.000+0000",
+      "fullName": "UpdateAccounts_test.testTriggerUpdateAccountCA",
+      "diagnostic": {
+        "exceptionMessage": "Method testTriggerUpdateAccountCA does not exist in the the apex class with Id :01p0900000JVt7e",
+        "exceptionStackTrace": null,
+        "compileProblem": ""
+      }
+    }
+  ]
+}

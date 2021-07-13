@@ -12,7 +12,7 @@ public with sharing class DataFactory {
          insert accounts;
          return accounts;
      }
-
+/*
      public static Order generateOrderItem(String nameAccount,String nameProduct,String familyProduct,Integer ProductQuantity ,Integer ProductPrice,String statu){
 
         //
@@ -51,32 +51,90 @@ public with sharing class DataFactory {
         //
         System.debug('od'+ord);
         System.debug('odi'+ordItem);
-        return ord;  //uow[1].ord.orderid ?????
+
+        //return ord;  //uow[1].ord.orderid ?????
      }
+*/
+public static Order generateOrderItem(String nameAccount,String nameProduct,String familyProduct,Integer ProductQuantity ,Integer ProductPrice,String statu,Integer shipmentCost){
 
-     public static Order generateOrder(String nameAccount,Integer chiffreDAffaire/*,Integer totalAmount*/){
+    //
+    System.debug('icistart');
+    //
+    //verifier duplicata ????
+    Account acc = new Account(Name = nameAccount);
+    //Name = nameAccount
+    Boolean doublon = true;
+    List<Account> accs=[SELECT Id,Name FROM Account];
+   /* if (accs.size() == 0) {
+        acc = new Account(Name = nameAccount);
+        insert acc;
+    }else {
+        acc =accs[0];
+    }*/
+// y a il un code ereur de doubon ?
+    for(Account a: accs){
+        if(acc.Name == a.Name){
+            acc=a;
+            doublon= false;
+            break;
+        } 
+    } 
+    if (doublon) {
+        insert acc;
+    }
+// et si rien comment on insert ?
 
-        //
-        fflib_SObjectUnitOfWork uow = new fflib_SObjectUnitOfWork(
-            new List<SObjectType>{
-                Account.SObjectType,
-                Order.SObjectType
-            }
-        );
-        //
-        Account acc = new Account(Name = nameAccount , Chiffre_d_affaire__c= chiffreDAffaire);
-        uow.registerNew(acc);
-       /* System.Debug('COUCOUdata'); 
-        System.Debug(acc.Chiffre_d_affaire__c);   */
 
-        Order ord = new Order(EffectiveDate=system.today(),Status='Ordered',ShipmentCost__c=100);//orderer est pas valable inserer ou trouver ce qui aurai du etre mis
-        uow.registerNew(ord, Order.AccountId, acc);
+    Product2 product = new Product2(Name = nameProduct, Family = familyProduct);
+    insert product;
 
-        uow.commitWork();
-        //
-        return ord;  
-     }
-     static void loadTestDataAccount(){//comment definir les lien entre les objet ?
-        List<sObject> accounts = Test.loadData(Account.SObjectType, 'accountData');
-      }
+    //Create the PricebookEntry
+    PricebookEntry pbe = new PricebookEntry(
+        Pricebook2Id = Test.getStandardPricebookId(),
+        Product2Id = product.Id,
+        UnitPrice = 1020,
+        IsActive = true
+    );
+    insert pbe;
+
+    Order ord = new Order(EffectiveDate=system.today(),Status=statu,Pricebook2Id = Test.getStandardPricebookId(),AccountId=acc.Id,ShipmentCost__c=shipmentCost);//Draft,Received,In Process,Activated,Provisioned,Error
+    insert ord;
+
+    OrderItem ordItem = new OrderItem ( Quantity=ProductQuantity, UnitPrice = ProductPrice,OrderId = ord.Id,PricebookEntryId=pbe.Id);
+    insert ordItem;
+    System.debug('totalam'+ord.TotalAmount);
+    System.debug('odi'+ordItem);
+    return [SELECT Id,TotalAmount,ShipmentCost__c FROM Order WHERE Id=:ord.Id];
+ }
+/////
+
+public static List<Order> generateOrder(Integer iterateNumber){
+
+    //
+    fflib_SObjectUnitOfWork uow = new fflib_SObjectUnitOfWork(
+        new List<SObjectType>{
+            Account.SObjectType,
+            Order.SObjectType
+        }
+    );
+    //
+    Account acc = new Account(Name = 'nameAccount');
+    uow.registerNew(acc);
+    Order ord ;
+    List<Order> listOrd =new List<Order>();
+   /* System.Debug('COUCOUdata'); 
+    System.Debug(acc.Chiffre_d_affaire__c);   */
+        for (Integer i=0;i<iterateNumber;i++) {
+            ord = new Order(EffectiveDate=system.today(),Status='Ordered',ShipmentCost__c=100);//orderer est pas valable inserer ou trouver ce qui aurai du etre mis
+            listOrd.add(ord);
+            uow.registerNew(ord, Order.AccountId, acc);
+        }
+
+   
+    uow.commitWork();
+
+    return listOrd;  
+ }
+
+/////
 }

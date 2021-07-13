@@ -1,0 +1,42 @@
+{
+  "summary": {
+    "outcome": "Passed",
+    "testsRan": 1,
+    "passing": 1,
+    "failing": 0,
+    "skipped": 0,
+    "passRate": "100%",
+    "failRate": "0%",
+    "skipRate": "0%",
+    "testStartTime": "Fri Jul 09 2021 17:21:48",
+    "testExecutionTimeInMs": 1884,
+    "testTotalTimeInMs": 1884,
+    "commandTimeInMs": 137,
+    "hostname": "https://openclassroom9-dev-ed.my.salesforce.com",
+    "orgId": "00D09000007FKQOEA4",
+    "username": "aymericravizep7@openclassroom.com",
+    "testRunId": "7070900000NaSvr",
+    "userId": "00509000003XTOGAA4"
+  },
+  "tests": [
+    {
+      "id": "07M09000000dwTnEAI",
+      "queueItemId": "70909000000Y0aSAAS",
+      "stackTrace": null,
+      "message": null,
+      "asyncApexJobId": "7070900000NaSvrAAF",
+      "methodName": "testUpdateAccountsMaj",
+      "outcome": "Pass",
+      "apexLogId": "07L09000003pcSnEAI",
+      "apexClass": {
+        "id": "01p0900000JVt7eAAD",
+        "name": "UpdateAccounts_test",
+        "namespacePrefix": null,
+        "fullName": "UpdateAccounts_test"
+      },
+      "runTime": 1884,
+      "testTimestamp": "2021-07-09T15:21:48.000+0000",
+      "fullName": "UpdateAccounts_test.testUpdateAccountsMaj"
+    }
+  ]
+}

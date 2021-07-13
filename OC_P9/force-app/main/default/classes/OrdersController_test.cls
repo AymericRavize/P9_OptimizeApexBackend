@@ -9,8 +9,8 @@ public class OrdersController_test {
         Test.setCurrentPage(pageRef);
         
         for (Integer i =0;i<10;i++) {
-            DataFactory.generateOrderItem('Ao'+i, 'Po'+i,'Fo'+i, 10 , 50,'Ordered');
-            DataFactory.generateOrderItem('A'+i, 'P'+i,'F'+i, 10 , 50,'Draft');
+            DataFactory.generateOrderItem('Ao'+i, 'Po'+i,'Fo'+i, 10 , 50,'Ordered',10);
+            DataFactory.generateOrderItem('A'+i, 'P'+i,'F'+i, 10 , 50,'Draft',10);
         }
 
         OrdersController controller = new OrdersController();

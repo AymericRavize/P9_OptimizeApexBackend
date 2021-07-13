@@ -1,0 +1,50 @@
+{
+  "summary": {
+    "outcome": "Failed",
+    "testsRan": 1,
+    "passing": 0,
+    "failing": 1,
+    "skipped": 0,
+    "passRate": "0%",
+    "failRate": "100%",
+    "skipRate": "0%",
+    "testStartTime": "Fri Jul 09 2021 17:24:42",
+    "testExecutionTimeInMs": 1267,
+    "testTotalTimeInMs": 1267,
+    "commandTimeInMs": 114,
+    "hostname": "https://openclassroom9-dev-ed.my.salesforce.com",
+    "orgId": "00D09000007FKQOEA4",
+    "username": "aymericravizep7@openclassroom.com",
+    "testRunId": "7070900000NaSxG",
+    "userId": "00509000003XTOGAA4"
+  },
+  "tests": [
+    {
+      "id": "07M09000000dwTsEAI",
+      "queueItemId": "70909000000Y0acAAC",
+      "stackTrace": "Class.OrderAmount_test.testTriggerUpdateAccountCA: line 44, column 1",
+      "message": "System.AssertException: Assertion Failed: Expected: null, Actual: 200",
+      "asyncApexJobId": "7070900000NaSxGAAV",
+      "methodName": "testTriggerUpdateAccountCA",
+      "outcome": "Fail",
+      "apexLogId": "07L09000003pcAVEAY",
+      "apexClass": {
+        "id": "01p0900000JX8KSAA1",
+        "name": "OrderAmount_test",
+        "namespacePrefix": null,
+        "fullName": "OrderAmount_test"
+      },
+      "runTime": 1267,
+      "testTimestamp": "2021-07-09T15:24:43.000+0000",
+      "fullName": "OrderAmount_test.testTriggerUpdateAccountCA",
+      "diagnostic": {
+        "exceptionMessage": "System.AssertException: Assertion Failed: Expected: null, Actual: 200",
+        "exceptionStackTrace": "Class.OrderAmount_test.testTriggerUpdateAccountCA: line 44, column 1",
+        "className": "OrderAmount_test",
+        "compileProblem": "",
+        "lineNumber": 44,
+        "columnNumber": 1
+      }
+    }
+  ]
+}
