@@ -15,3 +15,4 @@ public with sharing class UpdateAccounts_test {
         System.assertEquals(3, [SELECT count() FROM Account WHERE Chiffre_d_affaire__c = 500]);//on vérifie que seulement les 3 order avec le status ordered ont été mis à jour
     }
 }
+

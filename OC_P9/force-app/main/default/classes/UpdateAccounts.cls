@@ -26,3 +26,4 @@ global class UpdateAccounts implements Database.Batchable<sObject>{
        
    } 
 }
+
