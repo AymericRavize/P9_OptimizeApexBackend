@@ -4,7 +4,7 @@ public with sharing class TriggerOrderHamdler {
 
 
 
-    public static void nestAmountMaj(List<Order> orders){
+    public static void netAmountMaj(List<Order> orders){ // met à jour  le netAmount à partir d'une liste d'order et retourne void 
 
         for(Order a : orders){//parcours de tous les order concernés
             if(a.ShipmentCost__c != 0 && a.ShipmentCost__c!= null){//faire le calcul seulement si l'on a une valeur à ShipmentCost__c
@@ -18,7 +18,7 @@ public with sharing class TriggerOrderHamdler {
 
 
 
-    public static void ChiffreAffaireMaj(List<Order> orders){
+    public static void ChiffreAffaireMaj(List<Order> orders){ // met à jour le chiffre d'affaire à partir d'une liste d'order et retourne void 
         Set<Id> setAccId=new Set<Id>();
 
 		for (Order ord : orders) {//ajoute la liste des comptes concernés sans doublons 
